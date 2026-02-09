@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁 - 育中實驗站</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gas-news.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+
+    <header id="header">
+        <div class="access-key-container">
+            <a href="#header" accesskey="U" title="上方導覽區塊" class="access-key">:::U</a>
+            <a href="sitemap.html" class="access-key-link">網站導覽</a>
+        </div>
+        <h1>育中實驗站</h1>
+    </header>
+
+    <div class="container">
+        <aside>
+            <div class="access-key-container">
+                <a href="#left-sidebar" accesskey="L" title="左側邊欄區塊" class="access-key">:::L</a>
+            </div>
+
+            <div class="card">
+                <nav id="left-sidebar" aria-label="常用連結">
+                    <h2 class="card-header">常用連結</h2>
+                    <ul>
+                        <li>
+                            <a href="https://www.yljh.ntpc.edu.tw" target="_blank" title="前往 育林國中校網(另開新視窗)"
+                                rel="noopener noreferrer">
+                                育林國中校網
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://esa.ntpc.edu.tw" target="_blank" title="前往 校務行政系統(另開新視窗)"
+                                rel="noopener noreferrer">
+                                校務行政系統
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pts.ntpc.edu.tw" target="_blank" title="前往 親師生平台(另開新視窗)"
+                                rel="noopener noreferrer">
+                                親師生平台
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <main id="main-content">
+            <div class="access-key-container">
+                <a href="#main-content-inner" accesskey="C" title="中央內容區塊" class="access-key">:::C</a>
+            </div>
+
+            <div class="card" id="main-content-inner">
+                <div class="card-content">
+                    <h2>公告區</h2>
+                    <div>
+                        <div id="gas-category-container" class="gas-categories" aria-label="公告分類">
+                            <!-- Categories will be injected here -->
+                        </div>
+
+                        <div id="gas-main-content">
+                            <div id="gas-news-container" class="gas-news-list" aria-live="polite" aria-busy="false">
+                                <!-- News items will be injected here -->
+                                <div class="gas-loading">載入資料中...</div>
+                            </div>
+                        </div>
+
+                        <!-- 分頁按鈕列 -->
+                        <div id="gas-pagination-container" class="gas-pagination">
+                            <!-- Pagination buttons will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h3>RWD 測試區</h3>
+                    <p>請嘗試調整瀏覽器視窗大小，觀察版面變化。</p>
+                    <ul>
+                        <li>桌面版 (Desktop)：雙欄顯示，左側欄 25%，主要內容 75%。</li>
+                        <li>行動版 (Mobile)：單欄顯示，內容垂直堆疊，寬度 100%。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h3>定位點說明</h3>
+                    <ul>
+                        <li><strong>Alt + U</strong>：上方導覽區</li>
+                        <li><strong>Alt + L</strong>：左側邊欄區塊</li>
+                        <li><strong>Alt + C</strong>：中間主要內容區</li>
+                        <li><strong>Alt + Z</strong>：下方頁尾區</li>
+                    </ul>
+                    <p>註：Firefox 請使用 Alt + Shift + 快速鍵。</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="access-key-container">
+            <a href="#footer" accesskey="Z" title="下方頁尾區塊" class="access-key">:::Z</a>
+        </div>
+        <div id="footer">
+            <p>新北市立育林國民中學</p>
+            <p>地址：238新北市樹林區復興路395號</p>
+            <p>&copy; 2026 版權所有</p>
+        </div>
+    </footer>
+
+    <!-- Details Modal -->
+    <template id="gas-detail-modal-template">
+        <div id="gas-detail-modal" class="gas-modal-overlay" role="dialog" aria-modal="true"
+            aria-labelledby="gas-modal-title">
+            <div class="gas-modal">
+                <button class="gas-modal-close" onclick="closeModal()" aria-label="關閉視窗">&times;</button>
+                <div id="gas-modal-title" class="gas-modal-title"></div>
+                <div id="gas-modal-meta" class="gas-modal-meta"></div>
+                <div id="gas-modal-body" class="gas-modal-content-body"></div>
+
+                <div id="gas-modal-urls" class="gas-modal-urls"></div>
+
+                <div id="gas-modal-attachments" class="gas-modal-attachments" style="display:none;">
+                    <div class="gas-modal-attachments-title">附件下載</div>
+                    <div id="gas-attach-list"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="gas-news.js"></script>
+</body>
+
+</html>

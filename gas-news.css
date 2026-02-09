@@ -1,0 +1,470 @@
+:root {
+    --gas-primary-color: #2563eb;
+    --gas-bg-color: #ffffff;
+    --gas-card-bg: #ffffff;
+    --gas-text-primary: #333333;
+    --gas-text-secondary: #666666;
+    --gas-border-radius: 8px;
+    --gas-transition: all 0.2s ease;
+}
+
+/* Base resets or specific styles should be scoped if possible, or use more specific selectors */
+/* Avoiding body { ... } if it affects the whole page when embedded. */
+/* Instead, wrap everything in a dedicated container or use specific classes. */
+
+.gas-container {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--gas-text-primary);
+    line-height: 1.6;
+    max-width: 56.25rem;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Good practice */
+}
+
+/* Accessibility Skip Link */
+.gas-skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--gas-primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+    text-decoration: none;
+}
+
+.gas-skip-link:focus {
+    top: 0;
+}
+
+.gas-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Categories Buttons */
+.gas-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
+}
+
+.gas-cat-btn {
+    background: #fff;
+    border: 2px solid #333;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--gas-transition);
+    color: #333;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.gas-cat-btn:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #fff;
+    /* Double ring effect */
+}
+
+.gas-cat-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gas-cat-btn.gas-active {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+.gas-cat-count {
+    background: #e2e8f0;
+    color: #475569;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Color variants */
+.gas-cat-btn.gas-blue-border {
+    border-color: #1e40af;
+    color: #1e40af;
+}
+
+.gas-cat-btn.gas-blue-border.gas-active {
+    background: #1e40af;
+    color: white;
+}
+
+.gas-cat-btn.gas-brown-border {
+    border-color: #78350f;
+    color: #78350f;
+}
+
+.gas-cat-btn.gas-brown-border.gas-active {
+    background: #78350f;
+    color: white;
+}
+
+.gas-cat-btn.gas-green-border {
+    border-color: #166534;
+    color: #166534;
+}
+
+.gas-cat-btn.gas-green-border.gas-active {
+    background: #166534;
+    color: white;
+}
+
+.gas-cat-btn.gas-purple-border {
+    border-color: #6b21a8;
+    color: #6b21a8;
+}
+
+.gas-cat-btn.gas-purple-border.gas-active {
+    background: #6b21a8;
+    color: white;
+}
+
+.gas-cat-btn.gas-red-border {
+    border-color: #991b1b;
+    color: #991b1b;
+}
+
+.gas-cat-btn.gas-red-border.gas-active {
+    background: #991b1b;
+    color: white;
+}
+
+/* News List */
+.gas-news-list {
+    list-style: none;
+    /* Bootstrap might add padding/margin to ul/ol, but div is safe usually. keeping it if needed */
+    padding: 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.gas-tag {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: white;
+    font-weight: 500;
+    white-space: nowrap;
+    display: inline-block;
+    /* Ensure it respects padding */
+}
+
+.gas-tag-gray {
+    background-color: #555;
+}
+
+.gas-tag-blue {
+    background-color: #1e40af;
+}
+
+.gas-tag-brown {
+    background-color: #78350f;
+}
+
+.gas-tag-green {
+    background-color: #166534;
+}
+
+.gas-tag-purple {
+    background-color: #6b21a8;
+}
+
+.gas-tag-red {
+    background-color: #991b1b;
+}
+
+.gas-news-item {
+    background: #fff;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--gas-transition);
+}
+
+.gas-news-item:hover {
+    background-color: #f8fafc;
+}
+
+.gas-news-date {
+    color: #666;
+    font-family: monospace;
+    font-size: 0.95rem;
+    min-width: 80px;
+}
+
+.gas-news-tag {
+    flex-shrink: 0;
+}
+
+.gas-news-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.gas-news-title {
+    font-size: 1rem;
+    color: #0369a1;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Ensure cursor pointer if it's an anchor or has click handler */
+    cursor: pointer;
+}
+
+.gas-news-title:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: -2px;
+    background-color: #ffeb3b;
+    /* High contrast background */
+    color: #000;
+    text-decoration: underline;
+}
+
+.gas-news-title:hover {
+    text-decoration: underline;
+}
+
+.gas-icon-pinned {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('https://esa.ntpc.edu.tw/web-announce/images/top.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.gas-icon-new {
+    width: 32px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('https://esa.ntpc.edu.tw/web-announce/images/new.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.gas-loading,
+.gas-error {
+    text-align: center;
+    padding: 40px;
+    color: var(--gas-text-secondary);
+}
+
+/* Modal Styles - Scoped */
+.gas-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Higher than BS defaults usually */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gas-modal-overlay.gas-open {
+    display: flex;
+    opacity: 1;
+}
+
+.gas-modal {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 50rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.gas-modal-overlay.gas-open .gas-modal {
+    transform: translateY(0);
+}
+
+.gas-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+    padding: 0;
+    /* Reset */
+    width: auto;
+    /* Reset */
+    height: auto;
+    /* Reset */
+}
+
+.gas-modal-close:hover {
+    color: #1e293b;
+}
+
+.gas-modal-title,
+.gas-modal-attachments-title {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 20px;
+    padding-right: 30px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+    line-height: 1.3;
+}
+
+.gas-modal-meta {
+    color: #64748b;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    /* Safety for mobile */
+}
+
+.gas-modal-content-body {
+    line-height: 1.8;
+    color: #334155;
+    margin-bottom: 20px;
+}
+
+.gas-modal-attachments {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.gas-modal-attachments h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #475569;
+}
+
+.gas-attach-link {
+    display: inline-block;
+    margin-right: 15px;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.gas-attach-link:hover {
+    text-decoration: underline;
+}
+
+.gas-modal-urls {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8fafc;
+    border-radius: 8px;
+    display: none;
+}
+
+.gas-url-row {
+    display: flex;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.gas-url-row:last-child {
+    margin-bottom: 0;
+}
+
+.gas-url-label {
+    font-weight: 600;
+    color: #475569;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.gas-url-link {
+    flex-grow: 1;
+}
+
+.gas-url-link a {
+    color: var(--gas-primary-color);
+    text-decoration: none;
+}
+
+.gas-url-link a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination Styles */
+.gas-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.gas-page-btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    transition: var(--gas-transition);
+}
+
+.gas-page-btn:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+}
+
+.gas-page-btn:hover {
+    background: #f1f5f9;
+}
+
+.gas-page-btn.gas-active {
+    background: var(--gas-primary-color);
+    color: white;
+    border-color: var(--gas-primary-color);
+}
