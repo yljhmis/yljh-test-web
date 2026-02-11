@@ -80,7 +80,7 @@
     border: 1px solid var(--gh-theme, #ddd);
     border-radius: 20px;
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.2s;
     font-weight: 500;
@@ -174,7 +174,7 @@
 }
 
 .gas-hero-card-title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: bold;
     margin-bottom: 10px;
     color: #007bff;
@@ -196,7 +196,7 @@
 }
 
 .gas-hero-card-meta {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: #666;
     margin-bottom: 10px;
     display: flex;
@@ -209,11 +209,11 @@
     color: white;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 
 .gas-hero-card-text {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #333;
     line-height: 1.6;
     white-space: pre-wrap;
@@ -287,14 +287,14 @@
 
 .gas-hero-modal-title {
     margin: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #333;
 }
 
 .gas-hero-modal-close {
     background: none;
     border: none;
-    font-size: 28px;
+    font-size: 1.75rem;
     line-height: 1;
     color: #999;
     cursor: pointer;
@@ -317,7 +317,7 @@
 .gas-hero-modal-info {
     margin-bottom: 15px;
     color: #666;
-    font-size: 14px;
+    font-size: 0.875rem;
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 10px;
 }
