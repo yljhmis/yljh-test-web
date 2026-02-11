@@ -11,7 +11,7 @@
 <body>
     <a href="#main-content" class="skip-link">跳至主要內容</a>
 
-    <header id="header">
+    <header id="header" tabindex="-1">
         <div class="access-key-container">
             <a href="#header" accesskey="U" title="上方導覽區塊" class="access-key">:::U</a>
             <a href="sitemap.html" class="access-key-link">網站導覽</a>
@@ -27,17 +27,17 @@
             </nav>
         </div>
 
-        <main id="main-content" class="full-width-main">
+        <main id="main-content" class="full-width-main" tabindex="-1">
             <div class="access-key-container">
                 <a href="#main-content-inner" accesskey="C" title="中央內容區塊" class="access-key">:::C</a>
             </div>
-            <div class="card" id="main-content-inner">
+            <div class="card" id="main-content-inner" tabindex="-1">
                 <div class="card-content">
                     <h2>全站架構</h2>
                     <p>本網站依「無障礙網頁開發規範」原則設計，下列為使用鍵盤快速鍵操作方式說明如下：</p>
                     <ul>
                         <li><strong style="color: #004488;">Alt + U</strong>：上方導覽區塊。</li>
-                        <li><strong style="color: #004488;">Alt + L</strong>：左側邊欄區塊。</li>
+                        <li><strong style="color: #004488;">Alt + L</strong>：左側邊欄區塊（僅首頁）。</li>
                         <li><strong style="color: #004488;">Alt + C</strong>：中央內容區塊。</li>
                         <li><strong style="color: #004488;">Alt + Z</strong>：下方頁尾區塊。</li>
                     </ul>
@@ -81,7 +81,7 @@
         <div class="access-key-container">
             <a href="#footer" accesskey="Z" title="下方頁尾區塊" class="access-key">:::Z</a>
         </div>
-        <div id="footer">
+        <div id="footer" tabindex="-1">
             <p>新北市立育林國民中學</p>
             <p>地址：238新北市樹林區復興路395號</p>
             <p>&copy; 2026 版權所有</p>
