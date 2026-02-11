@@ -368,15 +368,44 @@ function openHeroModal(item, catName) {
     `;
     text.textContent = item.hromemo; // 使用 textContent 保留格式但避免 XSS，若需 HTML 則用 innerHTML
 
+    // 附件
+    const files = document.getElementById('gas-hero-modal-files');
+    files.innerHTML = '';
+    if (item.file && item.file.length > 0) {
+        let fileHtml = `
+            <div class="gas-hero-modal-section-title">
+                <img src="https://esa.ntpc.edu.tw/web-heromgt/images/trophy.svg" alt="" width="24" height="24">
+                競賽附件
+            </div>
+            <div class="gas-hero-modal-file-list">
+        `;
+        item.file.forEach(f => {
+            fileHtml += `<div class="gas-hero-file-item"><a href="${f.filepath}" target="_blank" rel="noopener noreferrer">${f.picname}</a></div>`;
+        });
+        fileHtml += `</div>`;
+        files.innerHTML = fileHtml;
+    }
+
     // 圖片
     images.innerHTML = '';
     if (item.pic && item.pic.length > 0) {
+        let imgHtml = `
+            <div class="gas-hero-modal-section-title">
+                <img src="https://esa.ntpc.edu.tw/web-heromgt/images/trophy.svg" alt="" width="24" height="24">
+                競賽照片
+            </div>
+            <div class="gas-hero-modal-image-list">
+        `;
         item.pic.forEach(p => {
-            const img = document.createElement('img');
-            img.src = p.filepath;
-            img.alt = item.hrotitle; // 3. 圖片替代文字 (使用標題)
-            images.appendChild(img);
+            // 假設 filepath 是相對路徑，若已有 domain 則直接使用，否則補上
+            let src = p.filepath;
+            if (src && !src.startsWith('http')) {
+                src = 'https://esa.ntpc.edu.tw' + src;
+            }
+            imgHtml += `<img src="${src}" alt="${item.hrotitle}" class="gas-hero-modal-img">`;
         });
+        imgHtml += `</div>`;
+        images.innerHTML = imgHtml;
     }
 
     modal.classList.add('open');
