@@ -437,11 +437,35 @@ function closeModal() {
 }
 
 // Close on escape key
+// Close on escape key and Focus Trap
 document.addEventListener('keydown', function (e) {
+    const overlay = document.getElementById('gas-news-detail-modal');
+    const isOpen = overlay.classList.contains('gas-open');
+
+    if (!isOpen) return;
+
     if (e.key === 'Escape') {
-        const overlay = document.getElementById('gas-news-detail-modal');
-        if (overlay.classList.contains('gas-open')) {
-            closeModal();
+        closeModal();
+    }
+
+    if (e.key === 'Tab') {
+        // Focus Trap
+        const focusableElements = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+            // Shift + Tab
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            // Tab
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
         }
     }
 });
