@@ -361,9 +361,13 @@ function openHeroModal(item, catName) {
     const text = document.getElementById('gas-hero-modal-text');
     const images = document.getElementById('gas-hero-modal-images');
 
+    // Find category color
+    const cat = allHeroCategories.find(c => c.name === catName) || {};
+    const colorClass = cat.colorClass || 'gas-hero-color-all';
+
     title.textContent = item.hrotitle;
     info.innerHTML = `
-        <span class="gas-hero-tag">${catName}</span>
+        <span class="gas-hero-tag ${colorClass}">${catName}</span>
         <span style="margin-left:10px;">發布日期：${item.timetext}</span>
     `;
     text.textContent = item.hromemo; // 使用 textContent 保留格式但避免 XSS，若需 HTML 則用 innerHTML
