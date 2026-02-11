@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     paginationContainer = document.getElementById('gas-pagination-container');
 
     // Instantiate Modal from Template if needed
-    let modal = document.getElementById('gas-detail-modal');
+    let modal = document.getElementById('gas-news-detail-modal');
     if (!modal) {
-        const template = document.getElementById('gas-detail-modal-template');
+        const template = document.getElementById('gas-news-detail-modal-template');
         if (template) {
             const clone = template.content.cloneNode(true);
             document.body.appendChild(clone);
-            modal = document.getElementById('gas-detail-modal');
+            modal = document.getElementById('gas-news-detail-modal');
         }
     }
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close when clicking outside
     if (modal) {
         modal.addEventListener('click', (e) => {
-            if (e.target.id === 'gas-detail-modal') closeModal();
+            if (e.target.id === 'gas-news-detail-modal') closeModal();
         });
     }
 });
@@ -114,6 +114,8 @@ function renderCategories(categories) {
         btn.className = `gas-cat-btn ${colorClass} ${isActive ? 'gas-active' : ''}`;
         btn.dataset.id = cat.id;
         btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        // btn.setAttribute('aria-label', `分類：${cat.name}，共 ${cat.count} 則`);
+        btn.setAttribute('title', `分類：${cat.name}，共 ${cat.count} 則`);
 
         // Style adjustment for "All" button (usually dark gray/black)
         if (cat.id === -1) {
@@ -167,7 +169,7 @@ function renderCategories(categories) {
 const TAG_COLORS = ['gas-tag-blue', 'gas-tag-brown', 'gas-tag-green', 'gas-tag-purple', 'gas-tag-red'];
 
 function renderNews(newsList) {
-    // Update global list for openDetail lookup
+    // Update global list for openNewsDetail lookup
     currentNews = newsList || [];
 
     newsContainer.setAttribute('aria-busy', 'false');
@@ -233,7 +235,7 @@ function renderNews(newsList) {
         </div>
         <div class="gas-news-content">
             ${isPinned ? '<span class="gas-icon-pinned" role="img" aria-label="置頂公告"></span>' : ''}
-            <a href="javascript:void(0)" class="gas-news-title" role="button" aria-expanded="false" onclick="openDetail(${item.id})">${title}</a>
+            <a href="javascript:void(0)" class="gas-news-title" role="button" aria-expanded="false" onclick="openNewsDetail(${item.id})">${title}</a>
             ${isNew ? '<span class="gas-icon-new" role="img" aria-label="最新公告"></span>' : ''}
         </div>
     `;
@@ -346,13 +348,13 @@ function renderPagination(totalItems) {
 }
 
 // --- Details Modal Logic ---
-let lastFocusedElement = null;
+let lastFocusedNewsElement = null;
 
-function openDetail(id) {
+function openNewsDetail(id) {
     const item = currentNews.find(n => n.id === id);
     if (!item) return;
 
-    lastFocusedElement = document.activeElement;
+    lastFocusedNewsElement = document.activeElement;
 
     document.getElementById('gas-modal-title').textContent = item.opn_title || item.title;
 
@@ -413,7 +415,7 @@ function openDetail(id) {
         attachContainer.style.display = 'none';
     }
 
-    const overlay = document.getElementById('gas-detail-modal');
+    const overlay = document.getElementById('gas-news-detail-modal');
     overlay.classList.add('gas-open');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
@@ -425,19 +427,19 @@ function openDetail(id) {
 }
 
 function closeModal() {
-    const overlay = document.getElementById('gas-detail-modal');
+    const overlay = document.getElementById('gas-news-detail-modal');
     overlay.classList.remove('gas-open');
     document.body.style.overflow = '';
 
-    if (lastFocusedElement) {
-        lastFocusedElement.focus();
+    if (lastFocusedNewsElement) {
+        lastFocusedNewsElement.focus();
     }
 }
 
 // Close on escape key
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-        const overlay = document.getElementById('gas-detail-modal');
+        const overlay = document.getElementById('gas-news-detail-modal');
         if (overlay.classList.contains('gas-open')) {
             closeModal();
         }

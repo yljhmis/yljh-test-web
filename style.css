@@ -158,6 +158,8 @@ main {
     border-bottom: 1px solid #ddd;
     color: #333;
     font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 /* Access Key Container (Global) */
@@ -175,7 +177,7 @@ main {
     /* Default list padding */
 }
 
-aside nav ul {
+aside ul {
     list-style: none;
     padding: 20px;
     margin: 0;

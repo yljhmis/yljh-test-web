@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁 - 育中實驗站</title>
+    <title>首頁 - 郁章石疑實驗站</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="gas-news.css">
+    <link rel="stylesheet" href="gas-hero.css">
 </head>
 
 <body>
@@ -17,7 +18,7 @@
             <a href="#header" accesskey="U" title="上方導覽區塊" class="access-key">:::U</a>
             <a href="sitemap.html" class="access-key-link">網站導覽</a>
         </div>
-        <h1>育中實驗站</h1>
+        <h1>郁章石疑實驗站</h1>
     </header>
 
     <div class="container">
@@ -26,57 +27,86 @@
                 <a href="#left-sidebar" accesskey="L" title="左側邊欄區塊" class="access-key">:::L</a>
             </div>
 
-            <div class="card">
-                <nav id="left-sidebar" aria-label="常用連結">
-                    <h2 class="card-header">常用連結</h2>
-                    <ul>
-                        <li>
-                            <a href="https://www.yljh.ntpc.edu.tw" target="_blank" title="前往 育林國中校網(另開新視窗)"
-                                rel="noopener noreferrer">
-                                育林國中校網
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://esa.ntpc.edu.tw" target="_blank" title="前往 校務行政系統(另開新視窗)"
-                                rel="noopener noreferrer">
-                                校務行政系統
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://pts.ntpc.edu.tw" target="_blank" title="前往 親師生平台(另開新視窗)"
-                                rel="noopener noreferrer">
-                                親師生平台
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="card" id="left-sidebar" aria-label="常用連結">
+                <h2 class="card-header">常用連結</h2>
+                <ul>
+                    <li>
+                        <a href="https://www.yljh.ntpc.edu.tw" target="_blank" title="前往 育林國中校網(另開新視窗)"
+                            rel="noopener noreferrer">
+                            育林國中校網
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://esa.ntpc.edu.tw" target="_blank" title="前往 校務行政系統(另開新視窗)"
+                            rel="noopener noreferrer">
+                            校務行政系統
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://pts.ntpc.edu.tw" target="_blank" title="前往 親師生平台(另開新視窗)"
+                            rel="noopener noreferrer">
+                            親師生平台
+                        </a>
+                    </li>
+                </ul>
             </div>
         </aside>
 
         <main id="main-content">
             <div class="access-key-container">
-                <a href="#main-content-inner" accesskey="C" title="中央內容區塊" class="access-key">:::C</a>
+                <a href="#news-module" accesskey="C" title="中央內容區塊" class="access-key">:::C</a>
             </div>
 
-            <div class="card" id="main-content-inner">
+            <div class="card" id="news-module" aria-label="公告區">
+                <h2 class="card-header">公告區</h2>
                 <div class="card-content">
-                    <h2>公告區</h2>
-                    <div>
-                        <div id="gas-category-container" class="gas-categories" aria-label="公告分類">
-                            <!-- Categories will be injected here -->
-                        </div>
+                    <p>
+                        <a href="https://esa.ntpc.edu.tw/web-announce/rest/service/view/public/OFJQdXFmQXJyaTF1WTR3YytNaC9iQTN4WW1nWWc3UGcrWG5KVjFCalJjVT0"
+                            target="_blank" rel="noopener noreferrer" title="前往 校務行政系統公告模組(另開新視窗)">
+                            校務行政系統公告模組
+                        </a>
+                    </p>
+                    <div id="gas-category-container" class="gas-categories" aria-label="公告分類">
+                        <!-- Categories will be injected here -->
+                    </div>
 
-                        <div id="gas-main-content">
-                            <div id="gas-news-container" class="gas-news-list" aria-live="polite" aria-busy="false">
-                                <!-- News items will be injected here -->
-                                <div class="gas-loading">載入資料中...</div>
-                            </div>
+                    <div id="gas-main-content">
+                        <div id="gas-news-container" class="gas-news-list" aria-live="polite" aria-busy="false">
+                            <!-- News items will be injected here -->
+                            <div class="gas-loading">載入資料中...</div>
                         </div>
+                    </div>
 
-                        <!-- 分頁按鈕列 -->
-                        <div id="gas-pagination-container" class="gas-pagination">
-                            <!-- Pagination buttons will be injected here -->
+                    <!-- 分頁按鈕列 -->
+                    <div id="gas-pagination-container" class="gas-pagination">
+                        <!-- Pagination buttons will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="news-module" aria-label="榮譽榜">
+                <h2 class="card-header">榮譽榜</h2>
+                <div class="card-content">
+                    <p>
+                        <a href="https://esa.ntpc.edu.tw/web-heromgt/rest/service/view/public/WVFYTWN4Zy9GRlBrTDlkSEJZUmRnakZFRVBkNlhhUXRJSHRFRG9ENWZ3MD0"
+                            target="_blank" rel="noopener noreferrer" title="前往 校務行政系統公告模組(另開新視窗)">
+                            校務行政系統榮譽榜模組
+                        </a>
+                    </p>
+                    <div id="gas-hero-category-container" class="gas-hero-categories" aria-label="榮譽榜分類">
+                        <!-- Categories will be injected here -->
+                    </div>
+
+                    <div id="gas-hero-main-content">
+                        <div id="gas-hero-container" class="gas-hero-list" aria-live="polite" aria-busy="false">
+                            <!-- News items will be injected here -->
+                            <div class="gas-hero-loading">載入資料中...</div>
                         </div>
+                    </div>
+
+                    <!-- 分頁按鈕列 -->
+                    <div id="gas-hero-pagination-container" class="gas-hero-pagination">
+                        <!-- Pagination buttons will be injected here -->
                     </div>
                 </div>
             </div>
@@ -119,8 +149,8 @@
     </footer>
 
     <!-- Details Modal -->
-    <template id="gas-detail-modal-template">
-        <div id="gas-detail-modal" class="gas-modal-overlay" role="dialog" aria-modal="true"
+    <template id="gas-news-detail-modal-template">
+        <div id="gas-news-detail-modal" class="gas-modal-overlay" role="dialog" aria-modal="true"
             aria-labelledby="gas-modal-title">
             <div class="gas-modal">
                 <button class="gas-modal-close" onclick="closeModal()" aria-label="關閉視窗">&times;</button>
