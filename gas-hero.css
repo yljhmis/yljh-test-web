@@ -187,6 +187,14 @@
     text-decoration: underline;
 }
 
+.gas-hero-card-title:focus {
+    outline: 2px solid #0d6efd;
+    background-color: #ffeb3b;
+    /* High contrast yellow background */
+    color: #000;
+    text-decoration: none;
+}
+
 .gas-hero-card-meta {
     font-size: 13px;
     color: #666;
