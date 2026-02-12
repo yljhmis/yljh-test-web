@@ -1,5 +1,5 @@
 // REPLACE THIS WITH YOUR DEPLOYED WEB APP URL
-const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbwgMjOWRg8FX9OjWoTKVulUHxwQ-q47ngJDVhD20HX9Dx3FXs09hN0AgkGIOv0lHowqTw/exec';
+const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbxspXixvmsWGwUciZVDoDski-bobl-p4qxaR8yjgwE-sD-PtHAbeGCadKfg0of3sqX5gw/exec';
 
 let globalCategories = [];
 let globalRole = { schno: "014569" };
