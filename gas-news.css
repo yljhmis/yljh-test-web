@@ -328,6 +328,42 @@
     }
 }
 
+/* Mobile Portrait Layout (Phone) */
+@media (max-width: 576px) {
+    .gas-news-item {
+        flex-wrap: wrap;
+        /* Allow date to wrap */
+        align-items: flex-start;
+        /* Align to top */
+    }
+
+    .gas-news-date {
+        width: 100%;
+        /* Row 1: Date */
+        margin-bottom: 4px;
+        font-weight: 600;
+        /* Optional: differentiate date */
+    }
+
+    .gas-news-content {
+        width: 100%;
+        /* Rows 2 & 3 contained here */
+        margin-top: 4px;
+    }
+
+    /* Row 2 (in content): Icons + Tag */
+    /* Handled by 992px rules order */
+
+    /* Row 3 (in content): Title */
+    .gas-news-title {
+        white-space: normal;
+        /* Allow title to wrap */
+        line-height: 1.4;
+        padding: 4px 0;
+        /* Touch target size */
+    }
+}
+
 .gas-loading,
 .gas-error {
     text-align: center;
