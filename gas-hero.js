@@ -414,6 +414,7 @@ function openHeroModal(item, catName) {
 
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
     // 綁定關閉事件 (包含 Overlay 點擊)
     const closeBtns = modal.querySelectorAll('[data-close="true"]');
@@ -462,6 +463,7 @@ function closeHeroModal() {
     const modal = document.getElementById('gas-hero-modal');
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; // Restore background scrolling
     document.onkeydown = null;
 
     // 歸還焦點
