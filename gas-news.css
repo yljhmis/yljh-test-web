@@ -214,14 +214,19 @@
 
 .gas-news-tag {
     flex-shrink: 0;
+    margin-right: 8px;
+    /* Add spacing between tag and title/icon */
 }
 
+/* New responsive changes */
 .gas-news-content {
     flex-grow: 1;
     display: flex;
     align-items: center;
     gap: 8px;
     overflow: hidden;
+    flex-wrap: wrap;
+    /* Allow wrapping for responsive layouts */
 }
 
 .gas-news-title {
@@ -234,6 +239,8 @@
     text-overflow: ellipsis;
     /* Ensure cursor pointer if it's an anchor or has click handler */
     cursor: pointer;
+    order: 3;
+    /* Default order: after icon/tag/new */
 }
 
 .gas-news-title:focus {
@@ -243,6 +250,9 @@
     /* High contrast background */
     color: #000;
     text-decoration: underline;
+    position: relative;
+    /* Ensure focus ring visibility */
+    z-index: 1;
 }
 
 .gas-news-title:hover {
@@ -259,6 +269,13 @@
     background-position: center;
     flex-shrink: 0;
     vertical-align: middle;
+    order: 0;
+    /* Always first if present */
+}
+
+.gas-news-tag {
+    order: 1;
+    /* After pinned icon */
 }
 
 .gas-icon-new {
@@ -271,6 +288,44 @@
     background-position: center;
     flex-shrink: 0;
     vertical-align: middle;
+    order: 2;
+    /* After tag by default */
+}
+
+/* Medium Resolution Layout (Tablet/Small Desktop) */
+@media (max-width: 992px) {
+    .gas-news-content {
+        align-content: center;
+        /* Handle multi-line vertical alignment */
+    }
+
+    /* Row 1: Pinned + Tag + New */
+    .gas-icon-pinned {
+        order: 1;
+        margin-right: 4px;
+    }
+
+    .gas-news-tag {
+        order: 2;
+        margin-right: 4px;
+    }
+
+    .gas-icon-new {
+        order: 3;
+        margin-left: 0;
+        /* Reset margin if any */
+    }
+
+    /* Row 2: Title */
+    .gas-news-title {
+        order: 4;
+        width: 100%;
+        /* Force new line */
+        margin-top: 4px;
+        /* Space from top row */
+        white-space: nowrap;
+        /* Keep single line truncation */
+    }
 }
 
 .gas-loading,

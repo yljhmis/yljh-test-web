@@ -242,13 +242,13 @@ function renderNews(newsList) {
 
         li.innerHTML = `
         <div class="gas-news-date">${dateDisplay}</div>
-        <div class="gas-news-tag">
-             ${tagsHTML}
-        </div>
         <div class="gas-news-content">
+            <div class="gas-news-tag">
+                ${tagsHTML}
+            </div>
             ${isPinned ? '<span class="gas-icon-pinned" role="img" aria-label="置頂公告"></span>' : ''}
-            <a href="javascript:void(0)" class="gas-news-title" role="button" aria-expanded="false" onclick="openNewsDetail(${item.id})">${title}</a>
             ${isNew ? '<span class="gas-icon-new" role="img" aria-label="最新公告"></span>' : ''}
+            <a href="javascript:void(0)" class="gas-news-title" role="button" aria-expanded="false" onclick="openNewsDetail(${item.id})">${title}</a>
         </div>
     `;
         newsContainer.appendChild(li);
