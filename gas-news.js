@@ -143,6 +143,9 @@ function renderCategories(categories) {
             btn.setAttribute('aria-pressed', 'true');
 
             // 顯示載入中
+            if (newsContainer.offsetHeight > 0) {
+                newsContainer.style.minHeight = `${newsContainer.offsetHeight}px`;
+            }
             newsContainer.setAttribute('aria-busy', 'true');
             newsContainer.innerHTML = '<div class="gas-loading">載入中...</div>';
 
@@ -174,6 +177,7 @@ function renderNews(newsList) {
 
     newsContainer.setAttribute('aria-busy', 'false');
     newsContainer.innerHTML = '';
+    newsContainer.style.minHeight = ''; // Release height lock
 
     if (!newsList || newsList.length === 0) {
         newsContainer.innerHTML = '<div class="gas-loading">沒有相關公告</div>';
@@ -261,7 +265,7 @@ function renderPagination(totalItems) {
     const createBtn = (text, page, disabled = false, active = false, ariaLabel = '') => {
         const btn = document.createElement('button');
         active = (page === currentPage);
-        console.log(`Creating page btn ${page}, current: ${currentPage}, active: ${active}`); // DEBUG
+        // console.log(`Creating page btn ${page}, current: ${currentPage}, active: ${active}`); // DEBUG
         btn.className = `gas-page-btn ${active ? 'gas-active' : ''}`;
         btn.innerHTML = text; // innerHTML for entities like &laquo;
 
@@ -290,6 +294,9 @@ function renderPagination(totalItems) {
                 renderPagination(totalItems);
 
                 // 顯示載入中
+                if (newsContainer.offsetHeight > 0) {
+                    newsContainer.style.minHeight = `${newsContainer.offsetHeight}px`;
+                }
                 newsContainer.innerHTML = '<div class="gas-loading">載入中...</div>';
 
                 // 抓取本頁資料
@@ -307,7 +314,10 @@ function renderPagination(totalItems) {
                 renderPagination(current_cat_count);
 
                 // Scroll to top of list
-                document.getElementById('gas-news-container').scrollIntoView({ behavior: 'smooth' });
+                //document.getElementById('gas-category-container').scrollIntoView({ behavior: 'smooth' });
+                // const listTop = document.getElementById('gas-category-container').offsetTop - 20;
+                const listTop = catContainer.offsetTop - 20;
+                window.scrollTo({ top: listTop, behavior: 'smooth' });
             };
         }
         paginationContainer.appendChild(btn);

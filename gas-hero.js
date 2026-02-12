@@ -58,7 +58,11 @@ async function initGasHero() {
 }
 
 function renderHeroLoading() {
-    document.getElementById('gas-hero-list').innerHTML = '<p style="text-align:center; color:#666; width:100%;">資料載入中...</p>';
+    const container = document.getElementById('gas-hero-list');
+    if (container.offsetHeight > 0) {
+        container.style.minHeight = `${container.offsetHeight}px`;
+    }
+    container.innerHTML = '<p style="text-align:center; color:#666; width:100%;">資料載入中...</p>';
 }
 
 /**
@@ -155,7 +159,8 @@ async function handlePageClick(page) {
         // renderHeroPagination();
 
         // 捲動到頂部
-        const listTop = document.getElementById('gas-hero-filter').offsetTop;
+        // const listTop = document.getElementById('gas-hero-filter').offsetTop - 20;
+        const listTop = heroFilterContainer.offsetTop - 20;
         window.scrollTo({ top: listTop, behavior: 'smooth' });
     }
 }
@@ -288,6 +293,7 @@ async function fetchHeroDataPost(catId, page = 1, limit = 3) {
  */
 function renderHeroList(items, categories) {
     heroListContainer.innerHTML = '';
+    heroListContainer.style.minHeight = ''; // Release height lock
 
     if (!items || items.length === 0) {
         heroListContainer.innerHTML = '<p style="text-align:center; width:100%;">此分類尚無資料。</p>';

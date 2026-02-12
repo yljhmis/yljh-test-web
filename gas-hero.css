@@ -407,7 +407,7 @@
     transition: all 0.2s;
 }
 
-.gas-hero-page-btn:hover:not(:disabled) {
+.gas-hero-page-btn:hover:not(:disabled):not(.active) {
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
