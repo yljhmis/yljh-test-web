@@ -142,12 +142,20 @@ function renderCategories(categories) {
             btn.classList.add('gas-active');
             btn.setAttribute('aria-pressed', 'true');
 
+            // 若該分類數量為 0，則不進行資料擷取
+            if (cat.count <= 0) {
+                newsContainer.innerHTML = '<div class="gas-loading">此分類無公告</div>';
+                newsContainer.style.minHeight = ''; // Ensure no height lock is active
+                paginationContainer.innerHTML = '';
+                return;
+            }
+
             // 顯示載入中
             if (newsContainer.offsetHeight > 0) {
                 newsContainer.style.minHeight = `${newsContainer.offsetHeight}px`;
             }
             newsContainer.setAttribute('aria-busy', 'true');
-            newsContainer.innerHTML = '<div class="gas-loading">載入中...</div>';
+            newsContainer.innerHTML = `<div class="gas-loading">分類：${cat.name} 第1頁資料載入中....</div>`;
 
             paginationContainer.innerHTML = '';
             // 抓取新分類的第一頁資料
@@ -308,7 +316,9 @@ function renderPagination(totalItems) {
                 if (newsContainer.offsetHeight > 0) {
                     newsContainer.style.minHeight = `${newsContainer.offsetHeight}px`;
                 }
-                newsContainer.innerHTML = '<div class="gas-loading">載入中...</div>';
+                const currentCat = globalCategories.find(c => c.id === currentCategoryId);
+                const currentCatName = currentCat ? currentCat.name : '未知分類';
+                newsContainer.innerHTML = `<div class="gas-loading">分類：${currentCatName} 第${currentPage}頁資料載入中....</div>`;
 
                 // 抓取本頁資料
                 const data = await fetchData(currentCategoryId, currentPage);
