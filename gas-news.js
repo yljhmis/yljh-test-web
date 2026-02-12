@@ -180,7 +180,7 @@ function renderNews(newsList) {
     newsContainer.style.minHeight = ''; // Release height lock
 
     if (!newsList || newsList.length === 0) {
-        newsContainer.innerHTML = '<div class="gas-loading">沒有相關公告</div>';
+        newsContainer.innerHTML = '<div class="gas-loading">沒有相關公告 或 api 異常</div>';
         return;
     }
 

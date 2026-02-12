@@ -296,7 +296,7 @@ function renderHeroList(items, categories) {
     heroListContainer.style.minHeight = ''; // Release height lock
 
     if (!items || items.length === 0) {
-        heroListContainer.innerHTML = '<p style="text-align:center; width:100%;">此分類尚無資料。</p>';
+        heroListContainer.innerHTML = '<p style="text-align:center; width:100%;">此分類尚無資料 或 api 異常。</p>';
         return;
     }
 
