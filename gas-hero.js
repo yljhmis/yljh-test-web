@@ -26,9 +26,9 @@ const heroPaginationContainer = document.getElementById('gas-hero-pagination');
 // 用於焦點管理
 let previousActiveElement = null;
 
-document.addEventListener('DOMContentLoaded', () => {
-    initGasHero();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     initGasHero();
+// });
 
 async function initGasHero() {
     renderHeroLoading(true);

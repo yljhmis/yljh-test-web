@@ -15,7 +15,33 @@ let newsContainer;
 let catContainer;
 let paginationContainer;
 
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
+//     newsContainer = document.getElementById('gas-news-container');
+//     catContainer = document.getElementById('gas-category-container');
+//     paginationContainer = document.getElementById('gas-pagination-container');
+
+//     // Instantiate Modal from Template if needed
+//     let modal = document.getElementById('gas-news-detail-modal');
+//     if (!modal) {
+//         const template = document.getElementById('gas-news-detail-modal-template');
+//         if (template) {
+//             const clone = template.content.cloneNode(true);
+//             document.body.appendChild(clone);
+//             modal = document.getElementById('gas-news-detail-modal');
+//         }
+//     }
+
+//     initGasNews();
+
+//     // Close when clicking outside
+//     if (modal) {
+//         modal.addEventListener('click', (e) => {
+//             if (e.target.id === 'gas-news-detail-modal') closeModal();
+//         });
+//     }
+// });
+
+function initGasNewsElements() {
     newsContainer = document.getElementById('gas-news-container');
     catContainer = document.getElementById('gas-category-container');
     paginationContainer = document.getElementById('gas-pagination-container');
@@ -31,18 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    init();
-
     // Close when clicking outside
     if (modal) {
         modal.addEventListener('click', (e) => {
             if (e.target.id === 'gas-news-detail-modal') closeModal();
         });
     }
-});
+};
 
 
-async function init() {
+async function initGasNews() {
+
+    initGasNewsElements();
+
     try {
         const data = await fetchData(-1, 1);
 
