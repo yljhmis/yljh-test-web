@@ -406,7 +406,11 @@ function openHeroModal(item, catName) {
             if (src && !src.startsWith('http')) {
                 src = 'https://esa.ntpc.edu.tw' + src;
             }
-            imgHtml += `<img src="${src}" alt="${item.hrotitle}" class="gas-hero-modal-img">`;
+            imgHtml += `
+                <a href="${src}" target="_blank" download="" title="下載原圖：${item.hrotitle}">
+                    <img src="${src}" alt="競賽照片：${item.hrotitle}" class="gas-hero-modal-img">
+                </a>
+            `;
         });
         imgHtml += `</div>`;
         images.innerHTML = imgHtml;

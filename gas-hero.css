@@ -378,6 +378,13 @@
     border: 1px solid #ddd;
     display: block;
     margin-bottom: 10px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.gas-hero-modal-img:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 /* Pagination */
