@@ -82,9 +82,9 @@ function renderHeroLoading(isInit = false) {
 async function fetchHeroInitData(categoryId = 'all', page = 1, limit = 3) {
     try {
         const url = new URL(GAS_HERO_API_URL);
-        url.searchParams.append('catId', categoryId);
+        //url.searchParams.append('catId', categoryId);
         // 加上 timestamp 避免快取
-        url.searchParams.append('t', new Date().getTime());
+        // url.searchParams.append('t', new Date().getTime());
 
         const res = await fetch(url.toString());
         if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
@@ -337,7 +337,7 @@ function renderHeroList(items, categories) {
         // 圖片處理
         const default_pic = DEFAULT_HERO_IMG_URL[Math.floor(Math.random() * DEFAULT_HERO_IMG_URL.length)];
         const imgSrc = (item.pic && item.pic.length > 0) ? "https://esa.ntpc.edu.tw" + item.pic[0].filepath : default_pic;
-        console.log(imgSrc);
+
         // 分類名稱
         const catName = item.unitlibname || '未知分類';
 
