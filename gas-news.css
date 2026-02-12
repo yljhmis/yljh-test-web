@@ -234,9 +234,7 @@
     color: #0369a1;
     text-decoration: none;
     font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* Removed truncation properties to always show full title */
     /* Ensure cursor pointer if it's an anchor or has click handler */
     cursor: pointer;
     order: 3;
@@ -323,8 +321,6 @@
         /* Force new line */
         margin-top: 4px;
         /* Space from top row */
-        white-space: nowrap;
-        /* Keep single line truncation */
     }
 }
 
