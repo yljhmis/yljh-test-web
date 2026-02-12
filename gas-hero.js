@@ -150,6 +150,18 @@ async function handlePageClick(page) {
     if (currentHeroPage === page) return;
 
     currentHeroPage = page;
+
+    // 分類完全不在畫面中，則捲動
+    const rect = heroFilterContainer.getBoundingClientRect();
+    // 判斷是否「完全看不見」：
+    // 底部在視窗頂部之上 (rect.bottom < 0) 
+    // 或者 頂部在視窗底部之下 (rect.top > window.innerHeight)
+    const isOutOfView = rect.bottom < 0 || rect.top > window.innerHeight;
+    if (isOutOfView) {
+        const listTop = heroFilterContainer.offsetTop - 20;
+        window.scrollTo({ top: listTop, behavior: 'smooth' });
+    }
+
     renderHeroPagination();
     renderHeroLoading();
 
@@ -160,8 +172,8 @@ async function handlePageClick(page) {
 
         // 捲動到頂部
         // const listTop = document.getElementById('gas-hero-filter').offsetTop - 20;
-        const listTop = heroFilterContainer.offsetTop - 20;
-        window.scrollTo({ top: listTop, behavior: 'smooth' });
+        // const listTop = heroFilterContainer.offsetTop - 20;
+        // window.scrollTo({ top: listTop, behavior: 'smooth' });
     }
 }
 

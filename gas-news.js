@@ -291,6 +291,17 @@ function renderPagination(totalItems) {
 
                 currentPage = page;
 
+                // 分類完全不在畫面中，則捲動
+                const rect = catContainer.getBoundingClientRect();
+                // 判斷是否「完全看不見」：
+                // 底部在視窗頂部之上 (rect.bottom < 0) 
+                // 或者 頂部在視窗底部之下 (rect.top > window.innerHeight)
+                const isOutOfView = rect.bottom < 0 || rect.top > window.innerHeight;
+                if (isOutOfView) {
+                    const listTop = catContainer.offsetTop - 20;
+                    window.scrollTo({ top: listTop, behavior: 'smooth' });
+                }
+
                 renderPagination(totalItems);
 
                 // 顯示載入中
@@ -316,8 +327,21 @@ function renderPagination(totalItems) {
                 // Scroll to top of list
                 //document.getElementById('gas-category-container').scrollIntoView({ behavior: 'smooth' });
                 // const listTop = document.getElementById('gas-category-container').offsetTop - 20;
-                const listTop = catContainer.offsetTop - 20;
-                window.scrollTo({ top: listTop, behavior: 'smooth' });
+                // const listTop = catContainer.offsetTop - 20;
+                // window.scrollTo({ top: listTop, behavior: 'smooth' });
+                // catContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                // const rect = catContainer.getBoundingClientRect();
+
+                // // 判斷是否「完全看不見」：
+                // // 底部在視窗頂部之上 (rect.bottom < 0) 
+                // // 或者 頂部在視窗底部之下 (rect.top > window.innerHeight)
+                // const isOutOfView = rect.bottom < 0 || rect.top > window.innerHeight;
+
+                // if (isOutOfView) {
+                //     const listTop = catContainer.offsetTop - 20;
+                //     window.scrollTo({ top: listTop, behavior: 'smooth' });
+                // }
             };
         }
         paginationContainer.appendChild(btn);
