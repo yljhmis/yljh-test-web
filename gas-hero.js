@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function initGasHero() {
-    renderHeroLoading();
+    renderHeroLoading(true);
     try {
         const data = await fetchHeroInitData();
         //console.log(data);
@@ -57,12 +57,22 @@ async function initGasHero() {
     }
 }
 
-function renderHeroLoading() {
+function renderHeroLoading(isInit = false) {
     const container = document.getElementById('gas-hero-list');
     if (container.offsetHeight > 0) {
         container.style.minHeight = `${container.offsetHeight}px`;
     }
-    container.innerHTML = '<p style="text-align:center; color:#666; width:100%;">資料載入中...</p>';
+
+    if (isInit) {
+        container.innerHTML = `<p style="text-align:center; color:#666; width:100;">榮譽榜資料載入中....</p>`;
+        return;
+    }
+
+    // Find category name
+    const cat = allHeroCategories.find(c => c.id === currentHeroCategory);
+    const catName = cat ? cat.name : '未知分類';
+
+    container.innerHTML = `<p style="text-align:center; color:#666; width:100%;">分類：${catName} 第${currentHeroPage}頁資料載入中....</p>`;
 }
 
 /**
@@ -132,6 +142,14 @@ async function handleHeroFilterClick(catId) {
     renderHeroFilters(allHeroCategories); // 重繪以更新 active 狀態
 
     heroPaginationContainer.innerHTML = '';
+
+    // 若該分類數量為 0，則不進行資料擷取
+    const cat = allHeroCategories.find(c => c.id === catId);
+    if (cat && cat.count <= 0) {
+        heroListContainer.innerHTML = '<p style="text-align:center; width:100%;">此分類尚無資料</p>';
+        heroListContainer.style.minHeight = ''; // Release height lock
+        return;
+    }
 
     // 重新載入列表
     renderHeroLoading();
