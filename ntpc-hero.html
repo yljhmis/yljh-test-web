@@ -1,0 +1,130 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>競賽獎勵榮譽榜</title>
+
+<link rel="stylesheet" href="/web-resource/app/bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/web-heromgt/css/jquery-ui-1.10.4.custom.css" />
+<link rel="stylesheet" href="/web-heromgt/css/jquery.simple-dtpicker.css" />
+<link rel="stylesheet" href="/web-heromgt/css/style.css">
+<link rel="stylesheet" href="/web-heromgt/css/hmstyle.css">
+
+<script src="/web-resource/app/bower_components/jquery/jquery.js"></script>
+
+<script src="/web-resource/app/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="/web-resource/app/bower_components/jquery-ui-datepicker-tw/jquery.ui.datepicker.tw.js"></script>
+<script src="/web-resource/app/bower_components/jquery-ui-datepicker-tw/jquery.ui.datepicker.cn.js"></script>
+<script src="/web-resource/app/bower_components/angular/angular.js"></script>
+<script src="/web-heromgt/javascript/alleDatepicker.js"></script>
+
+<script src="/web-resource/app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<body>
+    <div ng-app="webHeromgtPublic"
+        web-heromgt-public-dire="WVFYTWN4Zy9GRlBrTDlkSEJZUmRnakZFRVBkNlhhUXRJSHRFRG9ENWZ3MD0">
+        <div ng-if="setting['heromgt_open'] == '1'">
+            <div id="MainDiv" style="display:none;">
+                <div class="autogen_content">
+                    <div ng-include="'/web-heromgt/templates/' + set.top +'.html'"></div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="HronoModal" tabindex="-1" role="dialog" aria-labelledby="HronoModalTitle"
+                    aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-lg" role="document" style="width: 60%;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                    style="color: #FF0000;opacity: 0.8"><span aria-hidden="true">&times;</span><span
+                                        class="sr-only">Close</span></button>
+                                <h4 class="modal-title">新增競賽資料</h4>
+                            </div>
+                            <div class="modal-body">
+                                請輸入文號：<input type="text" ng-model="nsrvhro.newobj.hrono" class="form-control"
+                                    placeholder="請輸入競賽公文文號" style="display: inline;width: 60%">
+                                <br><span style='color:#B4B4B4'>(文號僅提供數字輸入，數字上限為20字，系統將自動比對教育局核定公文文號)</span>
+                                <br>{{nsrvhro.msg}}
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" ng-click="checkno()"
+                                    ng-if="nsrvhro.newobj.hrono == null">無文號繼續新增</button>
+                                <button type="button" class="btn btn-primary" ng-click="checkno()"
+                                    ng-if="nsrvhro.newobj.hrono != null">下一步</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">取消新增</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="NewsModal" tabindex="-1" role="dialog" aria-labelledby="NewsModalTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document" style="width: 85%;">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="newspage_top">
+                                    <span class="title"><img ng-src="/web-heromgt/images/trophy.svg" alt="榮譽榜圖示"
+                                            width="30px" height="30px">榮譽榜公告</span>
+                                    <div class="place">
+                                        <span>{{nsrvhro.newobj.dept}}</span> <span
+                                            class="date">{{nsrvhro.newobj.timetext}}</span>
+                                        <span class="click_times">{{nsrvhro.newobj.click}}</span>
+                                    </div>
+                                    <div style="float:right;padding-top: 3px;"><button type="button"
+                                            class="btn btn-default" data-dismiss="modal">關閉</button></div>
+                                </div>
+                                <div class="newspage_title">
+                                    <span
+                                        class="badge badge-secondary color_{{nsrvhro.newobj.srvhro_lib_id%6 + 1}}">{{srvhrolib.srvhrolibobj[nsrvhro.newobj.srvhro_lib_id].libname}}</span>
+                                    <span style="display: block; float: left; width: calc(100% - 150px)">
+                                        {{nsrvhro.newobj.hrotitle}}</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="news_content">
+                                    <pre>{{nsrvhro.newobj.hromemo}}</pre>
+                                </div>
+                                <div class="newspaperlink"
+                                    ng-if="nsrvhro.newobj.board && nsrvhro.newobj.board.length > 0">
+                                    <span ng-repeat="b in nsrvhro.newobj.board">
+                                        <span ng-if="$index != 0">、</span>
+                                        <a href="{{b.news_address}}" target="_blank">{{b.news_subject}}</a>
+                                    </span>
+                                </div>
+                                <div class="newspage_top" ng-if="nsrvhro.newobj.file && nsrvhro.newobj.file.length > 0">
+                                    <span class="title"><img ng-src="/web-heromgt/images/trophy.svg" alt="榮譽榜圖示"
+                                            width="30px" height="30px"> 競賽附件</span>
+                                </div>
+                                <div class="row pic_bigger"
+                                    ng-if="nsrvhro.newobj.file && nsrvhro.newobj.file.length > 0"
+                                    style="margin-bottom: 10px;">
+                                    <div class="col-xs-12" ng-repeat="file in nsrvhro.newobj.file">
+                                        <a href="{{file.filepath}}" class="group3" target="_blank">{{file.picname}}</a>
+                                    </div>
+                                </div>
+                                <div class="newspage_top" ng-if="nsrvhro.newobj.pic && nsrvhro.newobj.pic.length > 0">
+                                    <span class="title"><img ng-src="/web-heromgt/images/trophy.svg" alt="榮譽榜圖示"
+                                            width="30px" height="30px"> 競賽照片</span>
+                                </div>
+                                <div class="masonry" ng-if="nsrvhro.newobj.pic && nsrvhro.newobj.pic.length > 0">
+                                    <div class="item" ng-repeat="pic in nsrvhro.newobj.pic">
+                                        <a href="{{pic.filepath}}" class="group3" target="_blank">
+                                            <img ng-src="/central/{{role.schno}}/uploadfile/heromgt/public/{{nsrvhro.newobj.id}}/{{pic.picname}}"
+                                                alt="" style="margin:auto;" title="{{pic.picname}}"
+                                                class="img-responsive"> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="noopen" style="display:none;" ng-show="setting['heromgt_open'] == '0'">
+            貴單位尚未啟用外部網頁服務
+        </div>
+    </div>
+</body>
+
+<script src="/web-heromgt/javascript/HeromgtPublic.js"></script>

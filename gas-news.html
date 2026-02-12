@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAS News Reader</title>
+    <link rel="stylesheet" href="gas-news.css">
+</head>
+
+<body>
+
+    <div class="gas-container">
+        <a href="#gas-main-content" class="gas-skip-link">跳轉到主要內容</a>
+
+        <header class="gas-header">
+            <h3
+                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
+                公務公告查詢系統</h3>
+            <!-- <p>資料來源: Google Apps Script API</p> -->
+        </header>
+
+        <nav id="gas-category-container" class="gas-categories" aria-label="公告分類">
+            <!-- Categories will be injected here -->
+        </nav>
+
+        <main id="gas-main-content">
+            <div id="gas-news-container" class="gas-news-list" aria-live="polite" aria-busy="false">
+                <!-- News items will be injected here -->
+                <div class="gas-loading">載入資料中...</div>
+            </div>
+        </main>
+
+        <!-- 分頁按鈕列 -->
+        <div id="gas-pagination-container" class="gas-pagination">
+            <!-- Pagination buttons will be injected here -->
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="gas-detail-modal" class="gas-modal-overlay" role="dialog" aria-modal="true"
+        aria-labelledby="gas-modal-title">
+        <div class="gas-modal">
+            <button class="gas-modal-close" onclick="closeModal()" aria-label="關閉視窗">&times;</button>
+            <h2 id="gas-modal-title" class="gas-modal-title"></h2>
+            <div id="gas-modal-meta" class="gas-modal-meta"></div>
+            <div id="gas-modal-body" class="gas-modal-content-body"></div>
+
+            <div id="gas-modal-urls" class="gas-modal-urls"></div>
+
+            <div id="gas-modal-attachments" class="gas-modal-attachments" style="display:none;">
+                <h4>附件下載</h4>
+                <div id="gas-attach-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="gas-news.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAS Hero 榮譽榜</title>
+    <link rel="stylesheet" href="gas-hero.css">
+</head>
+
+<body>
+
+    <div class="gas-hero-container">
+        <!-- 過濾器/標籤列 -->
+        <div id="gas-hero-filter" class="gas-hero-filter-bar">
+            <!-- JS 動態生成按鈕 -->
+            <!-- <button class="gas-hero-badge gas-hero-loading">載入中...</button> -->
+        </div>
+
+        <!-- 列表容器 -->
+        <div id="gas-hero-list" class="gas-hero-list">
+            <!-- JS 動態生成卡片 -->
+        </div>
+
+        <!-- 分頁 -->
+        <div id="gas-hero-pagination" class="gas-hero-pagination">
+            <!-- JS 動態生成分頁按鈕 -->
+        </div>
+    </div>
+
+    <!-- Modal 結構 (Template) -->
+    <template id="gas-hero-modal-template">
+        <div id="gas-hero-modal" class="gas-hero-modal" aria-hidden="true">
+            <div class="gas-hero-modal-overlay" tabindex="-1" data-close="true"></div>
+            <div class="gas-hero-modal-dialog" role="dialog" aria-modal="true">
+                <div class="gas-hero-modal-content">
+                    <div class="gas-hero-modal-header">
+                        <h2 id="gas-hero-modal-title" class="gas-hero-modal-title"></h2>
+                        <button class="gas-hero-modal-close" aria-label="關閉" data-close="true">&times;</button>
+                    </div>
+                    <div class="gas-hero-modal-body">
+                        <div id="gas-hero-modal-info" class="gas-hero-modal-info"></div>
+                        <div id="gas-hero-modal-text" class="gas-hero-modal-text"></div>
+                        <div id="gas-hero-modal-images" class="gas-hero-modal-images"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="gas-hero.js"></script>
+</body>
+
+</html>

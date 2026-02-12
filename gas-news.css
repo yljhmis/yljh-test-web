@@ -335,6 +335,12 @@
         /* Allow date to wrap */
         align-items: flex-start;
         /* Align to top */
+        border-bottom: 2px solid #ccc;
+        /* Thicker and clearer separation */
+        padding-bottom: 16px;
+        /* slightly more padding */
+        margin-bottom: 8px;
+        /* larger gap */
     }
 
     .gas-news-date {
