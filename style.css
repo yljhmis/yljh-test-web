@@ -269,3 +269,7 @@ footer .access-key {
 footer p {
     margin: 5px 0;
 }
+
+.flex-wrap {
+    flex-wrap: wrap;
+}

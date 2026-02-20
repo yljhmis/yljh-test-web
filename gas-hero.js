@@ -221,6 +221,7 @@ function renderHeroPagination() {
     const nav = document.createElement('nav');
     nav.setAttribute('aria-label', '分頁導航');
     nav.className = 'gas-hero-pagination-nav';
+    nav.classList.add('flex-wrap');
     nav.style.display = 'flex';
     nav.style.gap = '5px';
 
