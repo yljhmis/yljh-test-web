@@ -26,6 +26,30 @@ const heroPaginationContainer = document.getElementById('gas-hero-pagination');
 // 用於焦點管理
 let previousActiveElement = null;
 
+/**
+ * 處理並取代裝飾性符號為 CSS 樣式，同時防 XSS
+ */
+function formatTextWithEmojis(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    let escapedHTML = div.innerHTML;
+
+    return escapedHTML
+        .replace(/🏅/g, '<span class="gas-hero-medal gas-hero-medal-top" aria-hidden="true"></span>')
+        .replace(/🥇/g, '<span class="gas-hero-medal gas-hero-medal-1st" aria-hidden="true"></span>')
+        .replace(/🥈/g, '<span class="gas-hero-medal gas-hero-medal-2nd" aria-hidden="true"></span>')
+        .replace(/🥉/g, '<span class="gas-hero-medal gas-hero-medal-3rd" aria-hidden="true"></span>');
+}
+
+/**
+ * 移除字串中的裝飾性符號 (用於 alt 或 title 屬性)
+ */
+function stripEmojis(text) {
+    if (!text) return '';
+    return text.replace(/[🏅🥇🥈🥉]/g, '').trim();
+}
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     initGasHero();
 // });
@@ -346,17 +370,21 @@ function renderHeroList(items, categories) {
         const cat = allHeroCategories.find(c => c.name === catName) || {};
         const colorClass = cat.colorClass || 'gas-hero-color-all';
 
+        const cleanTitle = stripEmojis(item.hrotitle);
+        const formattedTitle = formatTextWithEmojis(item.hrotitle);
+        const formattedMemo = formatTextWithEmojis(item.hromemo);
+
         card.innerHTML = `
             <div class="gas-hero-card-img-container">
-                <img src="${imgSrc}" alt="${item.hrotitle}" class="gas-hero-card-img" onerror="this.src='${default_pic}'">
+                <img src="${imgSrc}" alt="${cleanTitle}" class="gas-hero-card-img" onerror="this.src='${default_pic}'">
             </div>
             <div class="gas-hero-card-body">
                 <div class="gas-hero-card-meta">
                     <span class="gas-hero-tag ${colorClass}">${catName}</span>
                     <span>${item.timetext}</span>
                 </div>
-                <a href="#" class="gas-hero-card-title js-open-modal" data-id="${item.id}">${item.hrotitle}</a>
-                <div class="gas-hero-card-text">${item.hromemo}</div>
+                <a href="#" class="gas-hero-card-title js-open-modal" data-id="${item.id}">${formattedTitle}</a>
+                <div class="gas-hero-card-text">${formattedMemo}</div>
             </div>
         `;
 
@@ -402,12 +430,14 @@ function openHeroModal(item, catName) {
     const cat = allHeroCategories.find(c => c.name === catName) || {};
     const colorClass = cat.colorClass || 'gas-hero-color-all';
 
-    title.textContent = item.hrotitle;
+    const cleanTitle = stripEmojis(item.hrotitle);
+
+    title.innerHTML = formatTextWithEmojis(item.hrotitle);
     info.innerHTML = `
         <span class="gas-hero-tag ${colorClass}">${catName}</span>
         <span style="margin-left:10px;">發布日期：${item.timetext}</span>
     `;
-    text.textContent = item.hromemo; // 使用 textContent 保留格式但避免 XSS，若需 HTML 則用 innerHTML
+    text.innerHTML = formatTextWithEmojis(item.hromemo);
 
     // 附件
     const files = document.getElementById('gas-hero-modal-files');
@@ -444,8 +474,8 @@ function openHeroModal(item, catName) {
                 src = 'https://esa.ntpc.edu.tw' + src;
             }
             imgHtml += `
-                <a href="${src}" target="_blank" download="" title="下載原圖：${item.hrotitle}">
-                    <img src="${src}" alt="競賽照片：${item.hrotitle}" class="gas-hero-modal-img">
+                <a href="${src}" target="_blank" download="" title="下載原圖：${cleanTitle}">
+                    <img src="${src}" alt="競賽照片：${cleanTitle}" class="gas-hero-modal-img">
                 </a>
             `;
         });

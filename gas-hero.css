@@ -423,3 +423,28 @@
     cursor: not-allowed;
     background-color: #f8f9fa;
 }
+
+/* Decorative Medals (A11y) */
+.gas-hero-medal {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    vertical-align: baseline;
+    font-style: normal;
+}
+
+.gas-hero-medal-top::before {
+    content: "🏅";
+}
+
+.gas-hero-medal-1st::before {
+    content: "🥇";
+}
+
+.gas-hero-medal-2nd::before {
+    content: "🥈";
+}
+
+.gas-hero-medal-3rd::before {
+    content: "🥉";
+}
