@@ -459,18 +459,28 @@ function openNewsDetail(id) {
     const attachList = document.getElementById('gas-attach-list');
     attachList.innerHTML = '';
 
+    const proprietaryExtensions = ['DOC', 'DOCX', 'XLS', 'XLSX', 'PPT', 'PPTX'];
+
     if (item.attach && item.attach.length > 0) {
-        attachContainer.style.display = 'block';
+        let hasValidAttachments = false;
+
         item.attach.forEach(att => {
+            // Get file extension
+            const ext = att.filename.split('.').pop().toUpperCase();
+
+            // Filter out proprietary formats for a11y compliance (GN1320202E)
+            if (proprietaryExtensions.includes(ext)) {
+                return;
+            }
+
+            hasValidAttachments = true;
+
             const a = document.createElement('a');
 
             // Format: /central/{{role.schno}}/photoes/announce/{{news.id}}/{{f.filename}}
             // We use the globalRole.schno we fetched or defaulted
             const schno = globalRole.schno || '000000';
             const url = `https://esa.ntpc.edu.tw/central/${schno}/photoes/announce/${item.id}/${att.filename}`;
-
-            // Get file extension
-            const ext = att.filename.split('.').pop().toUpperCase();
 
             a.href = url;
             a.className = 'gas-attach-link';
@@ -482,6 +492,12 @@ function openNewsDetail(id) {
 
             attachList.appendChild(a);
         });
+
+        if (hasValidAttachments) {
+            attachContainer.style.display = 'block';
+        } else {
+            attachContainer.style.display = 'none';
+        }
     } else {
         attachContainer.style.display = 'none';
     }

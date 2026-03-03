@@ -442,19 +442,30 @@ function openHeroModal(item, catName) {
     // 附件
     const files = document.getElementById('gas-hero-modal-files');
     files.innerHTML = '';
+    const proprietaryExtensions = ['DOC', 'DOCX', 'XLS', 'XLSX', 'PPT', 'PPTX'];
+
     if (item.file && item.file.length > 0) {
-        let fileHtml = `
-            <div class="gas-hero-modal-section-title">
-                <img src="https://esa.ntpc.edu.tw/web-heromgt/images/trophy.svg" alt="" width="24" height="24">
-                競賽附件
-            </div>
-            <div class="gas-hero-modal-file-list">
-        `;
-        item.file.forEach(f => {
-            fileHtml += `<div class="gas-hero-file-item"><a href="${f.filepath}" target="_blank" rel="noopener noreferrer">${f.picname}</a></div>`;
+        // 先過濾出非屬特定商業文書軟體的檔案
+        const validFiles = item.file.filter(f => {
+            if (!f.picname) return false;
+            const ext = f.picname.split('.').pop().toUpperCase();
+            return !proprietaryExtensions.includes(ext);
         });
-        fileHtml += `</div>`;
-        files.innerHTML = fileHtml;
+
+        if (validFiles.length > 0) {
+            let fileHtml = `
+                <div class="gas-hero-modal-section-title">
+                    <img src="https://esa.ntpc.edu.tw/web-heromgt/images/trophy.svg" alt="" width="24" height="24">
+                    競賽附件
+                </div>
+                <div class="gas-hero-modal-file-list">
+            `;
+            validFiles.forEach(f => {
+                fileHtml += `<div class="gas-hero-file-item"><a href="${f.filepath}" target="_blank" rel="noopener noreferrer">${f.picname}</a></div>`;
+            });
+            fileHtml += `</div>`;
+            files.innerHTML = fileHtml;
+        }
     }
 
     // 圖片
