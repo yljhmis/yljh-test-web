@@ -436,6 +436,37 @@ function openNewsDetail(id) {
 
     // HTML Content
     let content = (item.opn_content ? item.opn_content.replace(/\n/g, '<br>') : '') || item.opn_content_show || '(無內容)';
+
+    // 處理重複圖片 alt 內容
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+    const images = tempDiv.querySelectorAll('img');
+    if (images.length > 0) {
+        const altCounts = {};
+        images.forEach(img => {
+            const alt = img.getAttribute('alt');
+            // 若有 alt 屬性且不為空字串，則納入統計
+            if (alt !== null && alt.trim() !== '') {
+                altCounts[alt] = (altCounts[alt] || 0) + 1;
+            }
+        });
+
+        const altSeen = {};
+        images.forEach(img => {
+            const alt = img.getAttribute('alt');
+            if (alt !== null && alt.trim() !== '' && altCounts[alt] > 1) {
+                if (!altSeen[alt]) {
+                    altSeen[alt] = 1;
+                    img.setAttribute('alt', `${alt}，共 ${altCounts[alt]} 張`);
+                } else {
+                    altSeen[alt]++;
+                    img.setAttribute('alt', '');
+                }
+            }
+        });
+        content = tempDiv.innerHTML;
+    }
+
     document.getElementById('gas-modal-body').innerHTML = content;
 
     // URL References

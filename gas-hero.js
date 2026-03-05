@@ -478,15 +478,28 @@ function openHeroModal(item, catName) {
             </div>
             <div class="gas-hero-modal-image-list">
         `;
-        item.pic.forEach(p => {
+        const totalPics = item.pic.length;
+        item.pic.forEach((p, index) => {
             // 假設 filepath 是相對路徑，若已有 domain 則直接使用，否則補上
             let src = p.filepath;
             if (src && !src.startsWith('http')) {
                 src = 'https://esa.ntpc.edu.tw' + src;
             }
+
+            let altText = '';
+            let titleText = `下載原圖：${cleanTitle}`;
+            if (totalPics > 1) {
+                if (index === 0) {
+                    altText = `競賽照片：${cleanTitle}，共 ${totalPics} 張`;
+                }
+                titleText = `下載原圖：${cleanTitle} (第 ${index + 1} 張)`;
+            } else {
+                altText = `競賽照片：${cleanTitle}`;
+            }
+
             imgHtml += `
-                <a href="${src}" target="_blank" download="" title="下載原圖：${cleanTitle}">
-                    <img src="${src}" alt="競賽照片：${cleanTitle}" class="gas-hero-modal-img">
+                <a href="${src}" target="_blank" download="" title="${titleText}">
+                    <img src="${src}" alt="${altText}" class="gas-hero-modal-img">
                 </a>
             `;
         });
