@@ -4,7 +4,7 @@
  */
 
 // 請更換為您的 GAS Web App URL
-const GAS_HERO_API_URL = 'https://script.google.com/macros/s/AKfycbyU832lwga7NPGqf4VcvwM3jwNrCD-UddC3kRL6C9jXvE4s0S8wMcjCeULGgzC69MQ0/exec';
+const GAS_HERO_API_URL = 'https://script.google.com/macros/s/AKfycbz64EtRy-ZRcrOtRqgGlL4mnNXJNzt2N1f-Y-o-UZHR3XpWFPmvCu7ZUHvXLDXwQkX3/exec';
 const DEFAULT_HERO_IMG_URL = [
     'https://esa.ntpc.edu.tw/web-heromgt/images/default_1.jpg',
     'https://esa.ntpc.edu.tw/web-heromgt/images/default_2.jpg',
